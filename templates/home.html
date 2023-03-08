@@ -1,0 +1,35 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+My Notes
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h2 class="text-center">My Address Book</h2>
+    </div>
+
+    <form class="form-inline" action="/" method="POST">
+        <div class="text-center">
+            <input class="form-control" name="name" type="text" placeholder="Name" />
+            <input class="form-control" name="phone" type="number" placeholder="Phone" />
+            <input class="btn btn-success" type="submit" value="ADD">
+        </div>
+    </form>
+
+    <hr />
+
+    {% for contact in contacts %}
+    <br />
+    <p class="lead">
+        <strong>{{contact['name']}}</strong>
+        <a href="/delete/{{contact['_id']}}">
+            <span class="btn btn-danger btn-sm">X</span>
+        </a>
+    </p>
+    <p>{{contact['phone']}}</p>
+    <br />
+    {% endfor %}
+</div>
+{% endblock %}
